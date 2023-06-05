@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="ExerTeste.css">
+    <title>Document</title>
+</head>
+<body class="fundo">
+        
+    <div class="fundo1">
+        <center>
+            <div class="separar">
+                <form>
+                    <h1>SAIBA SE FOI APROVADO OU REPROVADO</h1>
+                    <h2>ATENÇÃO: Permitidos números de 0 a 20! </h2>
+                    Portugues:
+                    <input class="hover" type="number" id="numero1" min="0" max="20" placeholder="nº"/>
+                    Matematica:
+                    <input class= "hover"type="number" id="numero2" min="0" max="20" placeholder="nº"/>
+                    Biologia:
+                    <input class="hover" type="number" id="numero3" min="0" max="20" placeholder="nº"/>
+                    <input class= "hover" type="button" onclick="mostrar()" value="Mostrar"/>
+                </form>
+
+                <p class="mensagem">
+                    <span id="resultado"></span>
+                </p>
+            </div>
+        </center>
+        
+    </div>
+ 
+
+    <script>
+        
+
+function validarValores(valor1, valor2, valor3) 
+{
+  if (isNaN(valor1) || isNaN(valor2) || isNaN(valor3)) {
+    // verifica se algum dos valores não é um número
+    return false;
+  }
+  if (valor1 < 0 || valor1 > 20 || valor2 < 0 || valor2 > 20 || valor3 < 0 || valor3 > 20) {
+    // verifica se algum dos valores é menor que 0 ou maior que 20
+    return false;
+  }
+  // se passou pelas validações anteriores, os valores são válidos
+  return true;
+}
+
+function mostrar() 
+{
+  let valor1 = parseFloat(document.getElementById("numero1").value);
+  let valor2 = parseFloat(document.getElementById("numero2").value);
+  let valor3 = parseFloat(document.getElementById("numero3").value);
+
+  if (!validarValores(valor1, valor2, valor3)) {
+    // se os valores não são válidos, exibe uma mensagem de erro
+    document.getElementById("resultado").innerHTML = "Os valores informados não são válidos.";
+    return;
+  }
+
+  nota = (valor1 + valor2 + valor3) / 3;
+  nota = Math.round(nota);
+
+  if (nota <= 7) {
+    document.getElementById("resultado").innerHTML = "Reprovado!"
+  } else if (nota > 7 && nota <= 9) {
+    document.getElementById("resultado").innerHTML = "Oral!"
+  } else {
+    document.getElementById("resultado").innerHTML = "Aprovado!"
+  }
+}
+
+        
+    </script>
+</body>
+</html>
